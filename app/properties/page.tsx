@@ -55,12 +55,12 @@ export default function PropertiesPage({ searchParams }: Props) {
   return (
     <>
       <Navbar />
-      <div className="bg-brand-accent border-b border-blue-100 py-8">
+      <div className="bg-gradient-to-br from-emerald-900 via-[#1a4030] to-emerald-700 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="section-title">
+          <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-2">
             {city && CITY_LABELS[city] ? `Properties in ${CITY_LABELS[city]}` : "All Properties"}
           </h1>
-          <p className="section-subtitle">{totalCount} properties found</p>
+          <p className="text-white/70 font-body">{totalCount} properties found</p>
         </div>
       </div>
 

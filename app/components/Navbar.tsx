@@ -58,7 +58,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-body font-medium transition-colors ${
+                className={`text-base font-body font-medium transition-colors ${
                   isActive(link.href)
                     ? "text-brand-blue"
                     : "text-gray-600 hover:text-brand-blue"
@@ -72,7 +72,7 @@ export default function Navbar() {
             <div className="relative" onMouseLeave={closeCities} onMouseEnter={openCities}>
               <button
                 onClick={() => setCitiesOpen(!citiesOpen)}
-                className="text-sm font-body font-medium transition-colors flex items-center gap-1 text-gray-600 hover:text-brand-blue"
+                className="text-base font-body font-medium transition-colors flex items-center gap-1 text-gray-600 hover:text-brand-blue"
               >
                 Cities
                 <svg className={`w-3.5 h-3.5 transition-transform ${citiesOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">

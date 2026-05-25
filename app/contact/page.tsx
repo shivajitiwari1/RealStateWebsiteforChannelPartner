@@ -14,7 +14,7 @@ export default function ContactPage() {
     <>
       <Navbar />
 
-      <section className="bg-gradient-to-br from-gray-900 via-[#1a2d50] to-brand-blue py-14">
+      <section className="bg-gradient-to-br from-emerald-900 via-[#1a4030] to-emerald-700 py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-3">Contact Us</h1>
           <p className="text-white/70 font-body">We&apos;d love to hear from you. Reach out for any property enquiry.</p>

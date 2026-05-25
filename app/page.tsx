@@ -198,16 +198,16 @@ export default function HomePage() {
       </section>
 
       {/* ── Stats ── */}
-      <section className="bg-gray-950 border-b border-white/5">
+      <section className="border-b border-[#c8d8ee]" style={{background: "linear-gradient(135deg, #d6e4f7 0%, #e8f0fa 40%, #edf2f8 70%, #dde8f4 100%)"}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-y md:divide-y-0 md:divide-x divide-[#b8ceea]">
             {STATS.map((stat) => (
-              <div key={stat.label} className="text-center group">
-                <div className="w-14 h-14 rounded-2xl bg-blue-500/15 border border-blue-400/20 text-blue-400 flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-500/25 group-hover:border-blue-400/40 transition-all duration-300">
+              <div key={stat.label} className="text-center group pt-8 md:pt-0 first:pt-0">
+                <div className="w-14 h-14 rounded-2xl bg-white/60 backdrop-blur-sm text-[#2B4F8E] flex items-center justify-center mx-auto mb-4 group-hover:bg-[#3B6CB5] group-hover:text-white transition-all duration-300 shadow-sm border border-white/80">
                   {stat.icon}
                 </div>
-                <div className="font-display text-4xl md:text-5xl font-bold text-white tracking-tight">{stat.value}</div>
-                <div className="text-sm text-gray-400 font-body mt-2 tracking-wide">{stat.label}</div>
+                <div className="font-display text-4xl md:text-5xl font-bold text-[#2B4F8E] tracking-tight">{stat.value}</div>
+                <div className="text-sm text-[#4A6080] font-body mt-2 tracking-wide">{stat.label}</div>
               </div>
             ))}
           </div>

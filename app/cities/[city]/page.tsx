@@ -67,7 +67,7 @@ export default function CityPage({ params }: Props) {
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-[#1a2d50] to-brand-blue py-14">
+      <section className="bg-gradient-to-br from-emerald-900 via-[#1a4030] to-emerald-700 py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-xs text-blue-200 font-body mb-3">
             <a href="/" className="hover:text-white">Home</a> / <a href="/properties" className="hover:text-white">Properties</a> / {cityData.name}

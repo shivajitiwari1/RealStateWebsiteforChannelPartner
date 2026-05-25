@@ -61,7 +61,7 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-gray-900 via-[#1a2d50] to-brand-blue py-16">
+      <section className="bg-gradient-to-br from-emerald-900 via-[#1a4030] to-emerald-700 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">About PropTech NCR</h1>
           <p className="text-white/70 font-body text-lg max-w-2xl mx-auto">
@@ -139,7 +139,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 bg-brand-blue">
+      <section className="py-14 bg-gradient-to-br from-emerald-900 via-[#1a4030] to-emerald-700">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="font-display text-3xl font-bold text-white mb-3">Ready to Find Your Property?</h2>
           <p className="text-white/70 font-body mb-7">Get in touch with us today — free consultation, no pressure.</p>
