@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 
 const cities = [
   { label: "Noida",        href: "/cities/noida" },
@@ -13,83 +14,37 @@ const cities = [
   { label: "Delhi",        href: "/cities/delhi" },
 ];
 
-/* ─── Logo mark — SVG recreation of the provided PropTech NCR logo ─── */
-function LogoMark() {
-  return (
-    <svg viewBox="0 0 82 68" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-10 w-auto flex-shrink-0">
-      <defs>
-        <linearGradient id="blueG" x1="4" y1="60" x2="44" y2="2" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#3B6CB5"/>
-          <stop offset="100%" stopColor="#8BB8DC"/>
-        </linearGradient>
-        <linearGradient id="grayG" x1="44" y1="2" x2="78" y2="60" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#888888"/>
-          <stop offset="100%" stopColor="#444444"/>
-        </linearGradient>
-      </defs>
-
-      {/* Blue stripes — 4 wedges radiating from apex (41, 2) */}
-      {/* Stripe 1 — outermost */}
-      <polygon points="41,2 4,60 12,60"  fill="url(#blueG)" opacity="0.68"/>
-      {/* Stripe 2 */}
-      <polygon points="41,2 15,60 23,60" fill="url(#blueG)" opacity="0.80"/>
-      {/* Stripe 3 */}
-      <polygon points="41,2 26,60 34,60" fill="url(#blueG)" opacity="0.91"/>
-      {/* Stripe 4 — innermost */}
-      <polygon points="41,2 37,60 44,60" fill="url(#blueG)"/>
-
-      {/* Gray solid right slope */}
-      <polygon points="41,2 44,60 78,60" fill="url(#grayG)"/>
-
-      {/* Window — 2×2 blue panes */}
-      <rect x="47" y="40" width="5.5" height="5.5" rx="0.6" fill="#3B6CB5"/>
-      <rect x="53.5" y="40" width="5.5" height="5.5" rx="0.6" fill="#3B6CB5"/>
-      <rect x="47" y="46.5" width="5.5" height="5.5" rx="0.6" fill="#3B6CB5"/>
-      <rect x="53.5" y="46.5" width="5.5" height="5.5" rx="0.6" fill="#3B6CB5"/>
-    </svg>
-  );
-}
-
 export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [citiesOpen, setCitiesOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const openCities = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setCitiesOpen(true);
+  };
+  const closeCities = () => {
+    closeTimer.current = setTimeout(() => setCitiesOpen(false), 150);
+  };
 
   const isActive = (href: string) => pathname === href;
-  const isHome = pathname === "/";
-
-  /* transparent state = dark gradient so white text is always readable */
-  const isDark = isHome && !scrolled;
 
   return (
-    <nav
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled || !isHome
-          ? "bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm"
-          : "bg-gradient-to-b from-black/55 via-black/25 to-transparent border-b border-transparent"
-      }`}
-    >
+    <nav className="sticky top-0 z-50 bg-white border-b-2 border-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
-            <LogoMark />
-            <div>
-              <div className={`font-display font-bold text-[15px] leading-tight tracking-wide transition-colors ${isDark ? "text-white" : "text-[#2B5198]"}`}>
-                PROPTECH NCR
-              </div>
-              <div className={`text-[9px] leading-tight font-body italic transition-colors ${isDark ? "text-white/70" : "text-brand-dark"}`}>
-                A Helping Hand For A Happy Home
-              </div>
-            </div>
+          <Link href="/" className="flex items-center flex-shrink-0">
+            <Image
+              src="/logo.png"
+              alt="PropTech NCR — A Helping Hand For A Happy Home"
+              width={220}
+              height={185}
+              className="h-14 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav */}
@@ -105,9 +60,7 @@ export default function Navbar() {
                 href={link.href}
                 className={`text-sm font-body font-medium transition-colors ${
                   isActive(link.href)
-                    ? isDark ? "text-white" : "text-brand-blue"
-                    : isDark
-                    ? "text-white/80 hover:text-white"
+                    ? "text-brand-blue"
                     : "text-gray-600 hover:text-brand-blue"
                 }`}
               >
@@ -116,12 +69,10 @@ export default function Navbar() {
             ))}
 
             {/* Cities dropdown */}
-            <div className="relative" onMouseLeave={() => setCitiesOpen(false)}>
+            <div className="relative" onMouseLeave={closeCities} onMouseEnter={openCities}>
               <button
-                onMouseEnter={() => setCitiesOpen(true)}
-                className={`text-sm font-body font-medium transition-colors flex items-center gap-1 ${
-                  isDark ? "text-white/80 hover:text-white" : "text-gray-600 hover:text-brand-blue"
-                }`}
+                onClick={() => setCitiesOpen(!citiesOpen)}
+                className="text-sm font-body font-medium transition-colors flex items-center gap-1 text-gray-600 hover:text-brand-blue"
               >
                 Cities
                 <svg className={`w-3.5 h-3.5 transition-transform ${citiesOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -137,7 +88,7 @@ export default function Navbar() {
                       className="flex items-center gap-2 px-4 py-2.5 text-sm text-gray-700 hover:bg-brand-accent hover:text-brand-blue font-body transition-colors"
                       onClick={() => setCitiesOpen(false)}
                     >
-                      <svg className="w-3.5 h-3.5 text-brand-blue/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="w-3.5 h-3.5 text-brand-blue/50 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       </svg>
                       {city.label}
@@ -163,8 +114,9 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className={`md:hidden p-2 rounded-lg transition-colors ${isDark ? "hover:bg-white/10 text-white" : "hover:bg-gray-100 text-gray-600"}`}
+            className="md:hidden p-2 rounded-lg transition-colors text-gray-600 hover:bg-gray-100"
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
           >
             {menuOpen ? (
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
@@ -177,7 +129,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100">
+        <div className="md:hidden bg-white border-t border-gray-200">
           <div className="px-4 py-3 space-y-1">
             <Link href="/properties" className="block py-2.5 text-sm font-body font-medium text-gray-700 hover:text-brand-blue" onClick={() => setMenuOpen(false)}>Properties</Link>
             <Link href="/new-launches" className="block py-2.5 text-sm font-body font-medium text-gray-700 hover:text-brand-blue" onClick={() => setMenuOpen(false)}>New Launches</Link>

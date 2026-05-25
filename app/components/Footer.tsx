@@ -1,30 +1,5 @@
 import Link from "next/link";
-
-function FooterLogoMark() {
-  return (
-    <svg viewBox="0 0 82 68" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-10 w-auto flex-shrink-0">
-      <defs>
-        <linearGradient id="fblueG" x1="4" y1="60" x2="44" y2="2" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#4A7DC4"/>
-          <stop offset="100%" stopColor="#7AAED8"/>
-        </linearGradient>
-        <linearGradient id="fgrayG" x1="44" y1="2" x2="78" y2="60" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#777777"/>
-          <stop offset="100%" stopColor="#404040"/>
-        </linearGradient>
-      </defs>
-      <polygon points="41,2 4,60 12,60"  fill="url(#fblueG)" opacity="0.68"/>
-      <polygon points="41,2 15,60 23,60" fill="url(#fblueG)" opacity="0.80"/>
-      <polygon points="41,2 26,60 34,60" fill="url(#fblueG)" opacity="0.91"/>
-      <polygon points="41,2 37,60 44,60" fill="url(#fblueG)"/>
-      <polygon points="41,2 44,60 78,60" fill="url(#fgrayG)"/>
-      <rect x="47" y="40" width="5.5" height="5.5" rx="0.6" fill="#6AA3D8"/>
-      <rect x="53.5" y="40" width="5.5" height="5.5" rx="0.6" fill="#6AA3D8"/>
-      <rect x="47" y="46.5" width="5.5" height="5.5" rx="0.6" fill="#6AA3D8"/>
-      <rect x="53.5" y="46.5" width="5.5" height="5.5" rx="0.6" fill="#6AA3D8"/>
-    </svg>
-  );
-}
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -33,12 +8,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="flex items-center gap-2.5 mb-4">
-              <FooterLogoMark />
-              <div>
-                <div className="font-display font-bold text-white text-[15px] tracking-wide leading-tight">PROPTECH NCR</div>
-                <div className="text-[9px] text-gray-400 italic leading-tight">A Helping Hand For A Happy Home</div>
-              </div>
+            <div className="mb-4 inline-block bg-white rounded-xl px-2 py-1">
+              <Image
+                src="/logo.png"
+                alt="PropTech NCR"
+                width={150}
+                height={126}
+                className="h-12 w-auto object-contain"
+              />
             </div>
             <p className="text-sm text-gray-400 leading-relaxed mb-5">
               Your trusted real estate partner across Delhi NCR — helping families find their dream homes since 2020.

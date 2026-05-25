@@ -13,9 +13,9 @@
     "areaSqft": 1450,
     "description": "Spacious 3BHK apartment in the heart of Sector 62, Noida. Features a modular kitchen, premium vitrified tiles, and a beautiful balcony overlooking the green belt. The apartment is part of a gated society with 24/7 security, power backup, and all modern amenities. Walking distance from Sector 62 Metro Station. Ideal for families seeking a premium lifestyle in the heart of Noida's IT corridor.",
     "images": [
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=900&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=900&auto=format&fit=crop&q=80"
+      "/images/props/p1-1.jpg",
+      "/images/props/p1-2.jpg",
+      "/images/props/p1-3.jpg"
     ],
     "featured": true,
     "status": "available",
@@ -35,9 +35,9 @@
     "areaSqft": 1100,
     "description": "Well-maintained 2BHK flat in the prime location of Dwarka Sector 10, Delhi. The apartment boasts a spacious living area, modern kitchen fittings, and ample natural light. Located in a residential society with lift, parking, and power backup. Excellent connectivity to Dwarka Metro Line and IGI Airport.",
     "images": [
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=900&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=900&auto=format&fit=crop&q=80"
+      "/images/props/p2-1.jpg",
+      "/images/props/p2-2.jpg",
+      "/images/props/p2-3.jpg"
     ],
     "featured": true,
     "status": "available",
@@ -57,9 +57,9 @@
     "areaSqft": 650,
     "description": "Prime commercial retail space in the prestigious Cyber City area of Gurgaon. High footfall location with excellent visibility. Suitable for retail outlets, cafes, and service businesses. The property is in a well-maintained commercial complex with ample parking and 24/7 security. Ground floor unit — maximum exposure.",
     "images": [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=900&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=900&auto=format&fit=crop&q=80"
+      "/images/props/p3-1.jpg",
+      "/images/props/p3-2.jpg",
+      "/images/props/p3-3.jpg"
     ],
     "featured": true,
     "status": "available",
@@ -79,9 +79,9 @@
     "areaSqft": 3200,
     "description": "Introducing Emerald Heights — an exclusive villa township by a leading developer in Greater Noida West. These ultra-premium 4BHK villas offer private gardens, smart home automation, a private swimming pool, and a clubhouse spanning 50,000 sq ft. RERA approved. Possession: December 2028. Limited units — book now to lock in pre-launch prices.",
     "images": [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&auto=format&fit=crop&q=80"
+      "/images/props/p4-1.jpg",
+      "/images/props/p4-2.jpg",
+      "/images/props/p4-3.jpg"
     ],
     "featured": true,
     "status": "available",
@@ -101,8 +101,8 @@
     "areaSqft": 200,
     "description": "Corner residential plot (200 sq yards) in Sector 22, Faridabad. Approved by Haryana Urban Development Authority (HUDA). Wide road access, water and electricity connections available at the boundary. Ideal for building your dream home. Quiet residential neighbourhood with good social infrastructure.",
     "images": [
-      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=900&auto=format&fit=crop&q=80"
+      "/images/props/p5-1.jpg",
+      "/images/props/p5-2.jpg"
     ],
     "featured": false,
     "status": "available",
@@ -122,9 +122,9 @@
     "areaSqft": 1800,
     "description": "Elegant 4BHK builder floor in the upscale Vasundhara locality of Ghaziabad. Entire first floor of an independent house — no shared walls, full privacy. Marble flooring, modular kitchen with chimney, two balconies, and dedicated parking. Very close to NH-24 and Crossings Republik. Ready to move in.",
     "images": [
-      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&auto=format&fit=crop&q=80",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&auto=format&fit=crop&q=80"
+      "/images/props/p6-1.jpg",
+      "/images/props/p6-2.jpg",
+      "/images/props/p6-3.jpg"
     ],
     "featured": false,
     "status": "available",
