@@ -56,11 +56,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default function CityPage({ params }: Props) {
+export default async function CityPage({ params }: Props) {
   const cityData = CITIES[params.city];
   if (!cityData) notFound();
 
-  const properties = getPropertiesByCity(params.city);
+  const properties = await getPropertiesByCity(params.city);
 
   return (
     <>

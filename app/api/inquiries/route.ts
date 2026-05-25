@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
       inquiry.message = inquiry.message ? `City: ${city}\n${inquiry.message}` : `City: ${city}`;
     }
 
-    saveInquiry(inquiry);
+    await saveInquiry(inquiry);
     return NextResponse.json({ success: true, id: inquiry.id });
   } catch (err) {
     console.error("Inquiry error:", err);

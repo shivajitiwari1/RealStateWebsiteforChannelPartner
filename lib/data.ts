@@ -1,3 +1,4 @@
+import { kv } from "@vercel/kv";
 import fs from "fs";
 import path from "path";
 
@@ -44,89 +45,94 @@ export interface AdminConfig {
   phone: string;
 }
 
-function readJSON<T>(filename: string): T {
+function readFile<T>(filename: string): T {
   const filePath = path.join(DATA_DIR, filename);
-  const content = fs.readFileSync(filePath, "utf-8");
-  return JSON.parse(content) as T;
+  return JSON.parse(fs.readFileSync(filePath, "utf-8")) as T;
 }
 
-function writeJSON<T>(filename: string, data: T): void {
-  const filePath = path.join(DATA_DIR, filename);
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
+async function readData<T>(key: string, fallbackFile: string): Promise<T> {
+  try {
+    const data = await kv.get<T>(key);
+    if (data !== null && data !== undefined) return data;
+  } catch {
+    // KV not configured — fall through to file
+  }
+  return readFile<T>(fallbackFile);
+}
+
+async function writeData<T>(key: string, data: T): Promise<void> {
+  await kv.set(key, data);
 }
 
 // Properties
-export function getProperties(): Property[] {
-  return readJSON<Property[]>("properties.json");
+export async function getProperties(): Promise<Property[]> {
+  return readData<Property[]>("properties", "properties.json");
 }
 
-export function getAvailableProperties(): Property[] {
-  return getProperties().filter((p) => p.status === "available");
+export async function getAvailableProperties(): Promise<Property[]> {
+  return (await getProperties()).filter((p) => p.status === "available");
 }
 
-export function getFeaturedProperties(): Property[] {
-  return getAvailableProperties().filter((p) => p.featured);
+export async function getFeaturedProperties(): Promise<Property[]> {
+  return (await getAvailableProperties()).filter((p) => p.featured);
 }
 
-export function getPropertyBySlug(slug: string): Property | undefined {
-  return getProperties().find((p) => p.slug === slug);
+export async function getPropertyBySlug(slug: string): Promise<Property | undefined> {
+  return (await getProperties()).find((p) => p.slug === slug);
 }
 
-export function getPropertyById(id: string): Property | undefined {
-  return getProperties().find((p) => p.id === id);
+export async function getPropertyById(id: string): Promise<Property | undefined> {
+  return (await getProperties()).find((p) => p.id === id);
 }
 
-export function getPropertiesByCity(city: string): Property[] {
-  return getAvailableProperties().filter((p) => p.city === city);
+export async function getPropertiesByCity(city: string): Promise<Property[]> {
+  return (await getAvailableProperties()).filter((p) => p.city === city);
 }
 
-export function getPropertiesByType(type: string): Property[] {
-  return getAvailableProperties().filter((p) => p.type === type);
+export async function getPropertiesByType(type: string): Promise<Property[]> {
+  return (await getAvailableProperties()).filter((p) => p.type === type);
 }
 
-export function saveProperty(property: Property): void {
-  const properties = getProperties();
+export async function saveProperty(property: Property): Promise<void> {
+  const properties = await getProperties();
   const index = properties.findIndex((p) => p.id === property.id);
-  if (index >= 0) {
-    properties[index] = property;
-  } else {
-    properties.push(property);
-  }
-  writeJSON("properties.json", properties);
+  if (index >= 0) properties[index] = property;
+  else properties.push(property);
+  await writeData("properties", properties);
 }
 
-export function deleteProperty(id: string): void {
-  const properties = getProperties().filter((p) => p.id !== id);
-  writeJSON("properties.json", properties);
+export async function deleteProperty(id: string): Promise<void> {
+  const properties = (await getProperties()).filter((p) => p.id !== id);
+  await writeData("properties", properties);
 }
 
 // Inquiries
-export function getInquiries(): Inquiry[] {
-  return readJSON<Inquiry[]>("inquiries.json");
+export async function getInquiries(): Promise<Inquiry[]> {
+  return readData<Inquiry[]>("inquiries", "inquiries.json");
 }
 
-export function saveInquiry(inquiry: Inquiry): void {
-  const inquiries = getInquiries();
+export async function saveInquiry(inquiry: Inquiry): Promise<void> {
+  const inquiries = await getInquiries();
   inquiries.unshift(inquiry);
-  writeJSON("inquiries.json", inquiries);
+  await writeData("inquiries", inquiries);
 }
 
-export function updateInquiryStatus(id: string, status: Inquiry["status"]): void {
-  const inquiries = getInquiries();
+export async function updateInquiryStatus(id: string, status: Inquiry["status"]): Promise<void> {
+  const inquiries = await getInquiries();
   const index = inquiries.findIndex((i) => i.id === id);
   if (index >= 0) {
     inquiries[index].status = status;
-    writeJSON("inquiries.json", inquiries);
+    await writeData("inquiries", inquiries);
   }
 }
 
 // Admin
-export function getAdminConfig(): AdminConfig {
-  return readJSON<AdminConfig>("admin.json");
+export async function getAdminConfig(): Promise<AdminConfig> {
+  return readData<AdminConfig>("admin", "admin.json");
 }
 
-export function updateAdminConfig(config: AdminConfig): void {
-  writeJSON("admin.json", config);
+export async function updateAdminConfig(config: AdminConfig): Promise<void> {
+  await writeData("admin", config);
 }
 
 // Slug generation

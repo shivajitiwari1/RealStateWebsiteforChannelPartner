@@ -7,6 +7,6 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   if (!session.isLoggedIn) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { status } = await req.json();
-  updateInquiryStatus(params.id, status as Inquiry["status"]);
+  await updateInquiryStatus(params.id, status as Inquiry["status"]);
   return NextResponse.json({ success: true });
 }

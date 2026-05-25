@@ -13,12 +13,12 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const properties = getAvailableProperties();
+  const properties = await getAvailableProperties();
   return properties.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const property = getPropertyBySlug(params.slug);
+  const property = await getPropertyBySlug(params.slug);
   if (!property) return { title: "Property Not Found" };
   return {
     title: `${property.title} — ${property.city}`,
@@ -45,8 +45,8 @@ const TYPE_LABELS: Record<string, string> = {
   plot: "Plot",
 };
 
-export default function PropertyDetailPage({ params }: Props) {
-  const property = getPropertyBySlug(params.slug);
+export default async function PropertyDetailPage({ params }: Props) {
+  const property = await getPropertyBySlug(params.slug);
   if (!property || property.status !== "available") notFound();
 
   const waText = `Hi, I'm interested in the property: ${property.title} listed on proptechncr.com. Price: ${property.priceLabel}. Please share more details.`;

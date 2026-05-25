@@ -10,7 +10,7 @@ async function requireAuth() {
 
 export async function GET() {
   if (!await requireAuth()) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  return NextResponse.json(getProperties());
+  return NextResponse.json(await getProperties());
 }
 
 export async function POST(req: NextRequest) {
@@ -36,6 +36,6 @@ export async function POST(req: NextRequest) {
     postedAt: new Date().toISOString().split("T")[0],
   };
 
-  saveProperty(property);
+  await saveProperty(property);
   return NextResponse.json({ success: true, id: property.id });
 }

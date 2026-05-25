@@ -4,8 +4,8 @@ import { getAvailableProperties } from "@/lib/data";
 const BASE_URL = "https://proptechncr.com";
 const CITIES = ["noida", "greater-noida", "gurgaon", "faridabad", "ghaziabad", "delhi"];
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const properties = getAvailableProperties();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const properties = await getAvailableProperties();
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: "daily", priority: 1 },

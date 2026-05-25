@@ -10,7 +10,7 @@ async function requireAuth() {
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
   if (!await requireAuth()) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const existing = getPropertyById(params.id);
+  const existing = await getPropertyById(params.id);
   if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const body = await req.json();
@@ -25,12 +25,12 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     areaSqft: Number(body.areaSqft ?? existing.areaSqft),
   };
 
-  saveProperty(updated);
+  await saveProperty(updated);
   return NextResponse.json({ success: true });
 }
 
 export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
   if (!await requireAuth()) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  deleteProperty(params.id);
+  await deleteProperty(params.id);
   return NextResponse.json({ success: true });
 }

@@ -108,8 +108,8 @@ const STATS = [
   },
 ];
 
-export default function HomePage() {
-  const featured = getFeaturedProperties();
+export default async function HomePage() {
+  const featured = await getFeaturedProperties();
 
   return (
     <>

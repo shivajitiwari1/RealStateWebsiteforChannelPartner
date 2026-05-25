@@ -26,11 +26,11 @@ const CITY_LABELS: Record<string, string> = {
 
 const PAGE_SIZE = 12;
 
-export default function PropertiesPage({ searchParams }: Props) {
+export default async function PropertiesPage({ searchParams }: Props) {
   const { city, type, sort, page } = searchParams;
   const currentPage = parseInt(page || "1", 10);
 
-  let properties = getAvailableProperties();
+  let properties = await getAvailableProperties();
 
   if (city) properties = properties.filter((p) => p.city === city);
   if (type) properties = properties.filter((p) => p.type === (type as Property["type"]));

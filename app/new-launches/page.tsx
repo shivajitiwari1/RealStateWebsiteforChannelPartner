@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   description: "Explore the latest under-construction builder projects and new launch properties across Delhi NCR. RERA registered projects in Noida, Gurgaon, Greater Noida and more.",
 };
 
-export default function NewLaunchesPage() {
-  const projects = getPropertiesByType("new-launch");
+export default async function NewLaunchesPage() {
+  const projects = await getPropertiesByType("new-launch");
 
   return (
     <>

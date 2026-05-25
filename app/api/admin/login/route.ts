@@ -6,7 +6,7 @@ import { getSession } from "@/lib/session";
 export async function POST(req: NextRequest) {
   try {
     const { username, password } = await req.json();
-    const admin = getAdminConfig();
+    const admin = await getAdminConfig();
 
     if (username !== admin.username) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });

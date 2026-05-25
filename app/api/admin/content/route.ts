@@ -9,7 +9,7 @@ async function requireAuth() {
 
 export async function GET() {
   if (!await requireAuth()) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  const admin = getAdminConfig();
+  const admin = await getAdminConfig();
   return NextResponse.json({
     brokerName: admin.brokerName,
     phone: admin.phone,
@@ -22,8 +22,8 @@ export async function GET() {
 export async function PUT(req: NextRequest) {
   if (!await requireAuth()) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const body = await req.json();
-  const current = getAdminConfig();
-  updateAdminConfig({
+  const current = await getAdminConfig();
+  await updateAdminConfig({
     ...current,
     brokerName: String(body.brokerName || current.brokerName),
     phone: String(body.phone || current.phone),

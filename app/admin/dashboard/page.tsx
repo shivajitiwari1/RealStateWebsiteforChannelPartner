@@ -3,10 +3,10 @@ import { getProperties, getInquiries, getAdminConfig } from "@/lib/data";
 
 export const dynamic = "force-dynamic";
 
-export default function AdminDashboardPage() {
-  const properties = getProperties();
-  const inquiries = getInquiries();
-  const admin = getAdminConfig();
+export default async function AdminDashboardPage() {
+  const properties = await getProperties();
+  const inquiries = await getInquiries();
+  const admin = await getAdminConfig();
 
   const availableCount = properties.filter((p) => p.status === "available").length;
   const newInquiries = inquiries.filter((i) => i.status === "new").length;
