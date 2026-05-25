@@ -1,0 +1,133 @@
+[
+  {
+    "id": "prop-001",
+    "title": "3BHK Apartment in Sector 62",
+    "slug": "3bhk-apartment-sector-62-noida",
+    "type": "residential",
+    "city": "noida",
+    "area": "Sector 62",
+    "price": 8500000,
+    "priceLabel": "₹85 Lakh",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "areaSqft": 1450,
+    "description": "Spacious 3BHK apartment in the heart of Sector 62, Noida. Features a modular kitchen, premium vitrified tiles, and a beautiful balcony overlooking the green belt. The apartment is part of a gated society with 24/7 security, power backup, and all modern amenities. Walking distance from Sector 62 Metro Station. Ideal for families seeking a premium lifestyle in the heart of Noida's IT corridor.",
+    "images": [
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=900&auto=format&fit=crop&q=80"
+    ],
+    "featured": true,
+    "status": "available",
+    "postedAt": "2026-05-01"
+  },
+  {
+    "id": "prop-002",
+    "title": "2BHK Flat in Dwarka Sector 10",
+    "slug": "2bhk-flat-dwarka-sector-10-delhi",
+    "type": "residential",
+    "city": "delhi",
+    "area": "Dwarka Sector 10",
+    "price": 7200000,
+    "priceLabel": "₹72 Lakh",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "areaSqft": 1100,
+    "description": "Well-maintained 2BHK flat in the prime location of Dwarka Sector 10, Delhi. The apartment boasts a spacious living area, modern kitchen fittings, and ample natural light. Located in a residential society with lift, parking, and power backup. Excellent connectivity to Dwarka Metro Line and IGI Airport.",
+    "images": [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=900&auto=format&fit=crop&q=80"
+    ],
+    "featured": true,
+    "status": "available",
+    "postedAt": "2026-04-28"
+  },
+  {
+    "id": "prop-003",
+    "title": "Commercial Shop in Cyber City",
+    "slug": "commercial-shop-cyber-city-gurgaon",
+    "type": "commercial",
+    "city": "gurgaon",
+    "area": "Cyber City",
+    "price": 15000000,
+    "priceLabel": "₹1.5 Cr",
+    "bedrooms": 0,
+    "bathrooms": 1,
+    "areaSqft": 650,
+    "description": "Prime commercial retail space in the prestigious Cyber City area of Gurgaon. High footfall location with excellent visibility. Suitable for retail outlets, cafes, and service businesses. The property is in a well-maintained commercial complex with ample parking and 24/7 security. Ground floor unit — maximum exposure.",
+    "images": [
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=900&auto=format&fit=crop&q=80"
+    ],
+    "featured": true,
+    "status": "available",
+    "postedAt": "2026-04-20"
+  },
+  {
+    "id": "prop-004",
+    "title": "Luxe Villa Project — Emerald Heights",
+    "slug": "emerald-heights-villa-project-greater-noida",
+    "type": "new-launch",
+    "city": "greater-noida",
+    "area": "Greater Noida West",
+    "price": 25000000,
+    "priceLabel": "₹2.5 Cr onwards",
+    "bedrooms": 4,
+    "bathrooms": 4,
+    "areaSqft": 3200,
+    "description": "Introducing Emerald Heights — an exclusive villa township by a leading developer in Greater Noida West. These ultra-premium 4BHK villas offer private gardens, smart home automation, a private swimming pool, and a clubhouse spanning 50,000 sq ft. RERA approved. Possession: December 2028. Limited units — book now to lock in pre-launch prices.",
+    "images": [
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&auto=format&fit=crop&q=80"
+    ],
+    "featured": true,
+    "status": "available",
+    "postedAt": "2026-05-10"
+  },
+  {
+    "id": "prop-005",
+    "title": "Residential Plot in Sector 22",
+    "slug": "residential-plot-sector-22-faridabad",
+    "type": "plot",
+    "city": "faridabad",
+    "area": "Sector 22",
+    "price": 4500000,
+    "priceLabel": "₹45 Lakh",
+    "bedrooms": 0,
+    "bathrooms": 0,
+    "areaSqft": 200,
+    "description": "Corner residential plot (200 sq yards) in Sector 22, Faridabad. Approved by Haryana Urban Development Authority (HUDA). Wide road access, water and electricity connections available at the boundary. Ideal for building your dream home. Quiet residential neighbourhood with good social infrastructure.",
+    "images": [
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=900&auto=format&fit=crop&q=80"
+    ],
+    "featured": false,
+    "status": "available",
+    "postedAt": "2026-04-15"
+  },
+  {
+    "id": "prop-006",
+    "title": "4BHK Builder Floor in Vasundhara",
+    "slug": "4bhk-builder-floor-vasundhara-ghaziabad",
+    "type": "residential",
+    "city": "ghaziabad",
+    "area": "Vasundhara",
+    "price": 9800000,
+    "priceLabel": "₹98 Lakh",
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "areaSqft": 1800,
+    "description": "Elegant 4BHK builder floor in the upscale Vasundhara locality of Ghaziabad. Entire first floor of an independent house — no shared walls, full privacy. Marble flooring, modular kitchen with chimney, two balconies, and dedicated parking. Very close to NH-24 and Crossings Republik. Ready to move in.",
+    "images": [
+      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&auto=format&fit=crop&q=80"
+    ],
+    "featured": false,
+    "status": "available",
+    "postedAt": "2026-05-05"
+  }
+]
