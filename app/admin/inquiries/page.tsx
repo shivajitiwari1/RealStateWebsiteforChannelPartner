@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { Inquiry } from "@/lib/data";
 
 export default function AdminInquiriesPage() {
@@ -35,14 +34,12 @@ export default function AdminInquiriesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center gap-3">
-        <Link href="/admin/dashboard" className="text-sm text-gray-500 hover:text-brand-blue font-body">← Dashboard</Link>
-        <span className="text-gray-300">/</span>
-        <span className="font-display font-semibold text-gray-900">Inquiries</span>
-      </header>
-
+    <div className="min-h-screen">
       <div className="max-w-5xl mx-auto px-6 py-8">
+        <div className="mb-8 pt-2">
+          <div className="text-xs text-gray-400 font-body uppercase tracking-widest mb-1">Manage</div>
+          <h1 className="font-display text-2xl font-bold text-gray-900">Inquiries</h1>
+        </div>
         {loading ? (
           <div className="text-center py-16 text-gray-400 font-body">Loading...</div>
         ) : (

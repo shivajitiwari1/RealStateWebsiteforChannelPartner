@@ -25,30 +25,10 @@ export default function AdminDashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Admin Topbar */}
-      <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-brand-blue rounded-lg flex items-center justify-center">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-              <path d="M3 12L12 3L21 12" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M5 10V20H10V15H14V20H19V10" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-          <span className="font-display font-semibold text-gray-900">Admin Dashboard</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <Link href="/" target="_blank" className="text-sm text-gray-500 hover:text-brand-blue font-body">
-            View Site ↗
-          </Link>
-          <form action="/api/admin/logout" method="post">
-            <button className="text-sm text-red-500 hover:text-red-700 font-body">Logout</button>
-          </form>
-        </div>
-      </header>
-
+    <div className="min-h-screen">
       <div className="max-w-6xl mx-auto px-6 py-8">
-        <div className="mb-8">
+        <div className="mb-8 pt-2">
+          <div className="text-xs text-gray-400 font-body uppercase tracking-widest mb-1">Overview</div>
           <h1 className="font-display text-2xl font-bold text-gray-900">Welcome back, {admin.brokerName}</h1>
           <p className="text-sm text-gray-500 font-body mt-1">Here&apos;s what&apos;s happening across your listings.</p>
         </div>

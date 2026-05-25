@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { Property } from "@/lib/data";
 
 const CITY_LABELS: Record<string, string> = {
@@ -71,17 +70,15 @@ export default function AdminPropertiesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Link href="/admin/dashboard" className="text-sm text-gray-500 hover:text-brand-blue font-body">← Dashboard</Link>
-          <span className="text-gray-300">/</span>
-          <span className="font-display font-semibold text-gray-900">Properties</span>
-        </div>
-        <button onClick={handleNew} className="btn-primary text-sm px-4 py-2">+ Add Property</button>
-      </header>
-
+    <div className="min-h-screen">
       <div className="max-w-6xl mx-auto px-6 py-8">
+        <div className="flex items-center justify-between mb-8 pt-2">
+          <div>
+            <div className="text-xs text-gray-400 font-body uppercase tracking-widest mb-1">Manage</div>
+            <h1 className="font-display text-2xl font-bold text-gray-900">Properties</h1>
+          </div>
+          <button onClick={handleNew} className="btn-primary text-sm px-4 py-2">+ Add Property</button>
+        </div>
         {loading ? (
           <div className="text-center py-16 text-gray-400 font-body">Loading...</div>
         ) : (
