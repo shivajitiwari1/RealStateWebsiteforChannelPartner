@@ -1,4 +1,4 @@
-import { kv } from "@vercel/kv";
+import { Redis } from "@upstash/redis";
 import fs from "fs";
 import path from "path";
 
@@ -45,23 +45,40 @@ export interface AdminConfig {
   phone: string;
 }
 
+// Supports Upstash env vars (UPSTASH_REDIS_REST_URL) or old Vercel KV vars (KV_REST_API_URL)
+function getRedis(): Redis | null {
+  const url = process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN;
+  if (!url || !token) return null;
+  return new Redis({ url, token });
+}
+
 function readFile<T>(filename: string): T {
   const filePath = path.join(DATA_DIR, filename);
   return JSON.parse(fs.readFileSync(filePath, "utf-8")) as T;
 }
 
 async function readData<T>(key: string, fallbackFile: string): Promise<T> {
-  try {
-    const data = await kv.get<T>(key);
-    if (data !== null && data !== undefined) return data;
-  } catch {
-    // KV not configured — fall through to file
+  const redis = getRedis();
+  if (redis) {
+    try {
+      const data = await redis.get<T>(key);
+      if (data !== null && data !== undefined) return data;
+    } catch {
+      // Redis not reachable — fall through to file
+    }
   }
   return readFile<T>(fallbackFile);
 }
 
 async function writeData<T>(key: string, data: T): Promise<void> {
-  await kv.set(key, data);
+  const redis = getRedis();
+  if (!redis) {
+    throw new Error(
+      "Redis storage not configured. Add UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN to Vercel environment variables."
+    );
+  }
+  await redis.set(key, data);
 }
 
 // Properties
