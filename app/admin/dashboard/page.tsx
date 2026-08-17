@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { getProperties, getInquiries, getAdminConfig } from "@/lib/data";
+import MaintenanceToggle from "../components/MaintenanceToggle";
+import { initDB, dbGet } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
@@ -7,6 +9,13 @@ export default async function AdminDashboardPage() {
   const properties = await getProperties();
   const inquiries = await getInquiries();
   const admin = await getAdminConfig();
+
+  let maintenanceOn = true;
+  try {
+    await initDB();
+    const val = await dbGet<boolean>("maintenance_mode");
+    maintenanceOn = val ?? true;
+  } catch { /* keep default */ }
 
   const availableCount = properties.filter((p) => p.status === "available").length;
   const newInquiries = inquiries.filter((i) => i.status === "new").length;
@@ -31,6 +40,11 @@ export default async function AdminDashboardPage() {
           <div className="text-xs text-gray-400 font-body uppercase tracking-widest mb-1">Overview</div>
           <h1 className="font-display text-2xl font-bold text-gray-900">Welcome back, {admin.brokerName}</h1>
           <p className="text-sm text-gray-500 font-body mt-1">Here&apos;s what&apos;s happening across your listings.</p>
+        </div>
+
+        {/* Maintenance Mode Toggle */}
+        <div className="mb-6">
+          <MaintenanceToggle initialValue={maintenanceOn} />
         </div>
 
         {/* Stats Cards */}

@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { getIronSession } from "iron-session";
 import { IronSessionData } from "iron-session";
 
-const MAINTENANCE_MODE = true;
-
 const sessionOptions = {
   password: process.env.SESSION_SECRET || "proptech-ncr-secret-key-min-32-chars-long",
   cookieName: "proptech-ncr-admin",
@@ -15,16 +13,26 @@ const sessionOptions = {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Maintenance mode: redirect all public traffic to /maintenance
-  if (MAINTENANCE_MODE) {
-    const isAllowed =
-      pathname.startsWith("/maintenance") ||
-      pathname.startsWith("/admin") ||
-      pathname.startsWith("/api/admin") ||
-      /\.\w+$/.test(pathname);
+  // Paths that always pass through without maintenance check
+  const isPassthrough =
+    pathname.startsWith("/maintenance") ||
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/api/admin") ||
+    pathname.startsWith("/api/maintenance-status") ||
+    /\.\w+$/.test(pathname);
 
-    if (!isAllowed) {
-      return NextResponse.redirect(new URL("/maintenance", request.url));
+  if (!isPassthrough) {
+    try {
+      const statusUrl = new URL("/api/maintenance-status", request.url);
+      const res = await fetch(statusUrl.toString(), { cache: "no-store" });
+      if (res.ok) {
+        const { maintenance } = await res.json();
+        if (maintenance) {
+          return NextResponse.redirect(new URL("/maintenance", request.url));
+        }
+      }
+    } catch {
+      // DB unreachable — allow through rather than block visitors
     }
   }
 
