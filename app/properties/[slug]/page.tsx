@@ -203,7 +203,7 @@ export default async function PropertyDetailPage({ params }: Props) {
             <div className="sticky top-20 space-y-4">
               {/* WhatsApp CTA */}
               <a
-                href={`https://wa.me/919876543210?text=${encodeURIComponent(waText)}`}
+                href={`https://wa.me/919999649937?text=${encodeURIComponent(waText)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 w-full bg-[#25D366] text-white font-body font-semibold py-4 rounded-2xl hover:bg-[#1ebe5d] transition-colors shadow-lg"
@@ -227,11 +227,11 @@ export default async function PropertyDetailPage({ params }: Props) {
               {/* Contact Info */}
               <div className="bg-brand-accent rounded-2xl p-5">
                 <div className="font-display font-semibold text-gray-900 mb-3 text-sm">Contact Agent</div>
-                <a href="tel:+919876543210" className="flex items-center gap-2 text-sm font-body text-gray-700 hover:text-brand-blue transition-colors">
+                <a href="tel:+919999649937" className="flex items-center gap-2 text-sm font-body text-gray-700 hover:text-brand-blue transition-colors">
                   <svg className="w-4 h-4 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  +91 98765 43210
+                  +91 99996 49937
                 </a>
               </div>
             </div>

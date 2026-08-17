@@ -22,6 +22,8 @@ export default function AdminPropertiesPage() {
     description: "", featured: false, status: "available",
   });
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState("");
 
   const fetchProperties = async () => {
     setLoading(true);
@@ -58,15 +60,40 @@ export default function AdminPropertiesPage() {
   const handleEdit = (p: Property) => {
     setForm(p);
     setEditingId(p.id);
+    setUploadError("");
     setShowForm(true);
   };
 
   const handleNew = () => {
     setForm({ title: "", type: "residential", city: "noida", area: "", price: 0,
       priceLabel: "", bedrooms: 2, bathrooms: 2, areaSqft: 1000,
-      description: "", featured: false, status: "available" });
+      description: "", images: [], featured: false, status: "available" });
     setEditingId(null);
+    setUploadError("");
     setShowForm(true);
+  };
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+    setUploading(true);
+    setUploadError("");
+    const urls: string[] = [];
+    for (const file of Array.from(files)) {
+      const fd = new FormData();
+      fd.append("file", file);
+      const res = await fetch("/api/upload", { method: "POST", body: fd });
+      const data = await res.json();
+      if (data.url) urls.push(data.url);
+      else setUploadError(data.error || "Upload failed");
+    }
+    setForm(p => ({ ...p, images: [...(p.images || []), ...urls] }));
+    setUploading(false);
+    e.target.value = "";
+  };
+
+  const removeImage = (idx: number) => {
+    setForm(p => ({ ...p, images: (p.images || []).filter((_, i) => i !== idx) }));
   };
 
   return (
@@ -193,6 +220,28 @@ export default function AdminPropertiesPage() {
                   <input type="number" min={0} value={form.areaSqft || 0} onChange={(e) => setForm(p => ({ ...p, areaSqft: Number(e.target.value) }))}
                     className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm font-body focus:outline-none focus:border-brand-blue" />
                 </div>
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-gray-600 mb-1.5 font-body">Images</label>
+                {(form.images || []).length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {(form.images || []).map((url, idx) => (
+                      <div key={idx} className="relative group w-20 h-20">
+                        <img src={url} alt="" className="w-20 h-20 object-cover rounded-lg border border-gray-200" />
+                        <button type="button" onClick={() => removeImage(idx)}
+                          className="absolute -top-1.5 -right-1.5 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                          ×
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <label className={`flex items-center gap-2 px-4 py-2.5 border-2 border-dashed border-gray-200 rounded-lg cursor-pointer hover:border-brand-blue transition-colors ${uploading ? "opacity-50 pointer-events-none" : ""}`}>
+                  <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                  <span className="text-sm font-body text-gray-500">{uploading ? "Uploading..." : "Click to upload images (JPEG, PNG, WebP, max 5MB each)"}</span>
+                  <input type="file" accept="image/jpeg,image/png,image/webp" multiple className="hidden" onChange={handleImageUpload} disabled={uploading} />
+                </label>
+                {uploadError && <p className="text-xs text-red-500 mt-1 font-body">{uploadError}</p>}
               </div>
               <div>
                 <label className="block text-xs font-semibold text-gray-600 mb-1.5 font-body">Description</label>

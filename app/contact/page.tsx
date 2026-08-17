@@ -32,7 +32,7 @@ export default function ContactPage() {
                 </svg>
               </div>
               <h3 className="font-display font-semibold text-gray-900 mb-1">Phone</h3>
-              <a href="tel:+919876543210" className="text-sm text-brand-blue font-body hover:underline">+91 98765 43210</a>
+              <a href="tel:+919999649937" className="text-sm text-brand-blue font-body hover:underline">+91 99996 49937</a>
             </div>
 
             <div className="bg-brand-accent rounded-2xl p-6">
@@ -43,7 +43,7 @@ export default function ContactPage() {
               </div>
               <h3 className="font-display font-semibold text-gray-900 mb-1">WhatsApp</h3>
               <a
-                href="https://wa.me/919876543210?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20properties%20in%20NCR."
+                href="https://wa.me/919999649937?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20properties%20in%20NCR."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-[#25D366] font-body hover:underline"

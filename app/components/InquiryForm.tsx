@@ -40,7 +40,7 @@ export default function InquiryForm({ propertyId, propertyTitle, source }: Props
       const waText = propertyTitle
         ? `Hi, I just submitted an enquiry on proptechncr.com for ${propertyTitle}. My name is ${form.name} and my number is ${form.phone}.`
         : `Hi, I just submitted an enquiry on proptechncr.com. My name is ${form.name} and my number is ${form.phone}. I'm interested in properties in ${form.city || "NCR"}.`;
-      window.open(`https://wa.me/919876543210?text=${encodeURIComponent(waText)}`, "_blank");
+      window.open(`https://wa.me/919999649937?text=${encodeURIComponent(waText)}`, "_blank");
     } catch {
       setStatus("error");
     }
@@ -77,7 +77,7 @@ export default function InquiryForm({ propertyId, propertyTitle, source }: Props
             value={form.name}
             onChange={handleChange}
             required
-            placeholder="Rahul Sharma"
+            placeholder=""
             className="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm font-body text-gray-800 placeholder-gray-400 focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors"
           />
         </div>
@@ -89,7 +89,7 @@ export default function InquiryForm({ propertyId, propertyTitle, source }: Props
             value={form.phone}
             onChange={handleChange}
             required
-            placeholder="9876543210"
+            placeholder=""
             className="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm font-body text-gray-800 placeholder-gray-400 focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors"
           />
         </div>
@@ -102,7 +102,7 @@ export default function InquiryForm({ propertyId, propertyTitle, source }: Props
           name="email"
           value={form.email}
           onChange={handleChange}
-          placeholder="rahul@email.com"
+          placeholder=""
           className="w-full border border-gray-200 rounded-lg px-3.5 py-2.5 text-sm font-body text-gray-800 placeholder-gray-400 focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-colors"
         />
       </div>

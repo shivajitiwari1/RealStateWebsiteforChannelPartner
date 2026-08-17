@@ -100,7 +100,7 @@ export default function Navbar() {
 
             {/* WhatsApp CTA */}
             <a
-              href="https://wa.me/919876543210?text=Hi%2C%20I%27m%20interested%20in%20properties%20in%20NCR."
+              href="https://wa.me/919999649937?text=Hi%2C%20I%27m%20interested%20in%20properties%20in%20NCR."
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-[#25D366] text-white px-4 py-2 rounded-xl text-sm font-body font-semibold hover:bg-[#1ebe5d] transition-colors shadow-sm"
@@ -141,7 +141,7 @@ export default function Navbar() {
             </div>
             <Link href="/about" className="block py-2.5 text-sm font-body font-medium text-gray-700 hover:text-brand-blue" onClick={() => setMenuOpen(false)}>About</Link>
             <Link href="/contact" className="block py-2.5 text-sm font-body font-medium text-gray-700 hover:text-brand-blue" onClick={() => setMenuOpen(false)}>Contact</Link>
-            <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 py-2.5 text-sm font-body font-semibold text-[#25D366]">
+            <a href="https://wa.me/919999649937" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 py-2.5 text-sm font-body font-semibold text-[#25D366]">
               WhatsApp Us
             </a>
           </div>

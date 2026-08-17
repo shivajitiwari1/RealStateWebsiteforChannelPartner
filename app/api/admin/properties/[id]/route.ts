@@ -10,27 +10,37 @@ async function requireAuth() {
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
   if (!await requireAuth()) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const existing = await getPropertyById(params.id);
-  if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  try {
+    const existing = await getPropertyById(params.id);
+    if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
-  const body = await req.json();
-  const updated = {
-    ...existing,
-    ...body,
-    id: existing.id,
-    slug: body.slug || existing.slug || generateSlug(body.title || existing.title),
-    price: Number(body.price ?? existing.price),
-    bedrooms: Number(body.bedrooms ?? existing.bedrooms),
-    bathrooms: Number(body.bathrooms ?? existing.bathrooms),
-    areaSqft: Number(body.areaSqft ?? existing.areaSqft),
-  };
+    const body = await req.json();
+    const updated = {
+      ...existing,
+      ...body,
+      id: existing.id,
+      slug: body.slug || existing.slug || generateSlug(body.title || existing.title),
+      price: Number(body.price ?? existing.price),
+      bedrooms: Number(body.bedrooms ?? existing.bedrooms),
+      bathrooms: Number(body.bathrooms ?? existing.bathrooms),
+      areaSqft: Number(body.areaSqft ?? existing.areaSqft),
+    };
 
-  await saveProperty(updated);
-  return NextResponse.json({ success: true });
+    await saveProperty(updated);
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("PUT property error:", err);
+    return NextResponse.json({ error: String(err) }, { status: 500 });
+  }
 }
 
 export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
   if (!await requireAuth()) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  await deleteProperty(params.id);
-  return NextResponse.json({ success: true });
+  try {
+    await deleteProperty(params.id);
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("DELETE property error:", err);
+    return NextResponse.json({ error: String(err) }, { status: 500 });
+  }
 }

@@ -95,12 +95,12 @@ export default function AdminContentPage() {
               <h2 className="font-display font-semibold text-gray-900 mb-1">Contact Information</h2>
               <p className="text-xs text-gray-400 font-body mb-5">Shown on the Contact page and footer.</p>
               <div className="space-y-5">
-                {field("Phone Number", "phone", "+91 98765 43210", "Displayed on the Contact page. Include country code.")}
+                {field("Phone Number", "phone", "+91 99996 49937", "Displayed on the Contact page. Include country code.")}
                 {field(
                   "WhatsApp Number",
                   "whatsappNumber",
-                  "919876543210",
-                  "Used in WhatsApp links. Format: country code + number, no + or spaces (e.g. 919876543210)."
+                  "919999649937",
+                  "Used in WhatsApp links. Format: country code + number, no + or spaces (e.g. 919999649937)."
                 )}
                 {field("Email Address", "email", "info@proptechncr.com")}
                 {field("Office Address", "address", "NCR, India", "Short address shown on Contact page.")}
