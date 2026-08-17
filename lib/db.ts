@@ -17,5 +17,6 @@ export async function dbSet<T>(key: string, value: T): Promise<void> {
   await put(`${PREFIX}${key}.json`, JSON.stringify(value), {
     access: "public",
     addRandomSuffix: false,
+    allowOverwrite: true,
   });
 }
