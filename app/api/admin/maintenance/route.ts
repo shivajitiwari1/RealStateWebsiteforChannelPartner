@@ -1,17 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/session";
-import { redisGet, redisSet } from "@/lib/redis";
+import { initDB, dbGet, dbSet } from "@/lib/db";
 
 export async function GET() {
   const session = await getSession();
   if (!session.isLoggedIn) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
-    const value = await redisGet("maintenance_mode");
-    const maintenance = value === null ? true : value === "true";
+    await initDB();
+    const value = await dbGet<boolean>("maintenance_mode");
+    const maintenance = value === null ? true : Boolean(value);
     return NextResponse.json({ maintenance });
-  } catch {
-    return NextResponse.json({ maintenance: true });
+  } catch (err) {
+    return NextResponse.json({ error: String(err) }, { status: 500 });
   }
 }
 
@@ -21,7 +22,8 @@ export async function POST(req: NextRequest) {
 
   try {
     const { maintenance } = await req.json();
-    await redisSet("maintenance_mode", String(maintenance));
+    await initDB();
+    await dbSet("maintenance_mode", maintenance);
     return NextResponse.json({ success: true, maintenance });
   } catch (err) {
     return NextResponse.json({ error: String(err) }, { status: 500 });

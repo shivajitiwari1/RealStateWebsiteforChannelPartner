@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getProperties, getInquiries, getAdminConfig } from "@/lib/data";
 import MaintenanceToggle from "../components/MaintenanceToggle";
-import { redisGet } from "@/lib/redis";
+import { initDB, dbGet } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
@@ -12,8 +12,9 @@ export default async function AdminDashboardPage() {
 
   let maintenanceOn = true;
   try {
-    const val = await redisGet("maintenance_mode");
-    maintenanceOn = val === null ? true : val === "true";
+    await initDB();
+    const val = await dbGet<boolean>("maintenance_mode");
+    maintenanceOn = val === null ? true : Boolean(val);
   } catch { /* keep default */ }
 
   const availableCount = properties.filter((p) => p.status === "available").length;
