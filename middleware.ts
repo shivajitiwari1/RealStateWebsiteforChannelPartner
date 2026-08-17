@@ -23,16 +23,21 @@ export async function middleware(request: NextRequest) {
 
   if (!isPassthrough) {
     try {
-      const statusUrl = new URL("/api/maintenance-status", request.url);
-      const res = await fetch(statusUrl.toString(), { cache: "no-store" });
-      if (res.ok) {
-        const { maintenance } = await res.json();
+      const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
+      const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+      if (redisUrl && redisToken) {
+        const res = await fetch(`${redisUrl}/get/maintenance_mode`, {
+          headers: { Authorization: `Bearer ${redisToken}` },
+          cache: "no-store",
+        });
+        const { result } = await res.json();
+        const maintenance = result === null ? true : result === "true";
         if (maintenance) {
           return NextResponse.redirect(new URL("/maintenance", request.url));
         }
       }
     } catch {
-      // DB unreachable — allow through rather than block visitors
+      // Redis unreachable — allow through
     }
   }
 

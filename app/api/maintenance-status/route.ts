@@ -1,17 +1,12 @@
 import { NextResponse } from "next/server";
-import { initDB, dbGet } from "@/lib/db";
+import { redisGet } from "@/lib/redis";
 
 export async function GET() {
   try {
-    await initDB();
-    const value = await dbGet<boolean>("maintenance_mode");
-    // null means never set → default ON (safe for new installs)
-    return NextResponse.json({ maintenance: value ?? true }, {
-      headers: { "Cache-Control": "no-store" },
-    });
+    const value = await redisGet("maintenance_mode");
+    const maintenance = value === null ? true : value === "true";
+    return NextResponse.json({ maintenance }, { headers: { "Cache-Control": "no-store" } });
   } catch {
-    return NextResponse.json({ maintenance: true }, {
-      headers: { "Cache-Control": "no-store" },
-    });
+    return NextResponse.json({ maintenance: true }, { headers: { "Cache-Control": "no-store" } });
   }
 }
